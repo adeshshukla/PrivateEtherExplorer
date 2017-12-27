@@ -1,0 +1,19 @@
+<!-- Home Page -->
+<div class="row">
+    <div class="col-md-8">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Acc Address</th>
+                <th>Balance (ETH)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="acc in accountDetails">
+                <td>{{acc.address}}</td>
+                <td>{{acc.balance}} ETH</td>
+            </tr>
+        </tbody>
+    </table>    
+    </div>
+</div>
