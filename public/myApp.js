@@ -13,6 +13,9 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
    when('/home', {
       templateUrl: 'home.html', controller: 'homeController'
    }).
+    when('/blockList', {
+      templateUrl: 'blockList.html', controller: 'blockListController'
+   }).
    
    otherwise({
       redirectTo: '/home'

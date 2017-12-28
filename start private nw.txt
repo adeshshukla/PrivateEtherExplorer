@@ -1,0 +1,1 @@
+geth --identity "Node123" --networkid 888 --rpc --rpcport "8081" --datadir "./chaindata/" --port "30330" --nodiscover --rpcapi "db,eth,net,web3"

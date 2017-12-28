@@ -7,13 +7,13 @@ myApp.controller("homeController", function($scope, $http){
         // $http.post('/api/getAllAccountDetails/', $scope.selectedOption)
         $http.get('/api/getAllAccountDetails/')
         .then(function(response){
-            console.log(response);
+            //console.log(response);
             $scope.accountDetails = response.data;
             // alert('Vote submitted successfully...!!!');            
             // $location.path('/home');
         },function(err){
             alert('Some technical error...!!!');
-            // console.log(err);
+            console.log(err);
         });
     }
 

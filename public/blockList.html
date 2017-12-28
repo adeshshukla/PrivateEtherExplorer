@@ -1,0 +1,49 @@
+<!-- Home Page -->
+<div class="row">
+    <div class="row">
+        <div class="col-md-3">
+            <button class="btn btn-success" role="button" ng-click="getAllBlocks()">Get Blocks from Chain</button>
+        </div>        
+        <div class="col-md-3">
+            <button class="btn btn-success" role="button" ng-click="getAllBlocksFromFile()">Get Blocks from File</button>
+        </div>        
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <!--<th>Block Number</th>
+                    <th>Block Hash</th>       
+                    <th>Block Size</th>
+                    <th>Miner</th>                
+                    <th>Mining Timestamp</th>
+                    <th>Total Difficulty</th>
+                    <th>Gas Limit</th>
+                    <th>Gas Used</th>-->
+                    <th>Block Number</th>
+                    <th>Mining Timestamp</th>                    
+                    <th>Miner</th>
+                    <th>Block Size</th>
+                    <th>Transaxtions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--<td>{{blc.number}}</td>
+                    <td>{{blc.hash}}</td>
+                    <td>{{blc.size}}</td>
+                    <td>{{blc.miner}}</td>                
+                    <td>{{blc.timestamp}}</td>
+                    <td>{{blc.totalDifficulty}}</td>
+                    <td>{{blc.gasLimit}}</td>
+                    <td>{{blc.gasUsed}}</td>                -->
+                <tr ng-repeat="blc in blockListModel">                    
+                    <td>{{blc.number}}</td>
+                    <td>{{blc.timestamp}}</td>                    
+                    <td>{{blc.miner}}</td>    
+                    <td>{{blc.size}}</td>                    
+                    <td><a href="#">{{blc.txCount}}</a></td>
+                </tr>
+            </tbody>
+        </table>    
+    </div>
+</div>
