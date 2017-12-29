@@ -1,0 +1,132 @@
+<div class="row">
+    <div class="panel panel-info table-responsive">
+        <div class="panel-heading margin-bottom-15">
+            <h3 class="panel-title">Block Information</h3>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-2">Height:
+                </div>
+                <div class="col-md-10">
+                    <!--<a id="ContentPlaceHolder1_HyperLinkPrev" title="Previous Block" class="btn btn-primary btn-xs" role="button" href="/block/4817051">&lt; Prev</a>&nbsp; &nbsp;-->
+                    <b>{{block.number}}</b>&nbsp;&nbsp;
+                    <!--<a id="ContentPlaceHolder1_HyperLinkNext" title="Next Block" class="btn btn-primary btn-xs" role="button" href="/block/4817053">Next &gt;</a>-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">TimeStamp:
+                </div>
+                <div class="col-md-10">
+                    {{block.timeStamp}} (e.g. 1 hr 30 mins ago (Dec-29-2017 07:36:11 AM +UTC) )
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Transactions:
+                </div>
+                <div class="col-md-10">
+                    <a href="#/transactionsList/{{block.number}}">{{block.transactions.length}} transactions</a>                    
+                    <!--<a href="/txs?block=4817052" title="Click to View Transactions">213 transactions</a> and <a href="/txsInternal?block=4817052" title="Click to View Internal Transactions">12 contract internal transactions</a> in this block</div>-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Hash:
+                </div>
+                <div class="col-md-10">
+                    {{block.hash}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Parent Hash:
+                </div>
+                <div class="col-md-10">
+                    {{block.parentHash}}
+                    <!--<a href="/block/0x158ee3528dcec318d9f94f8755e338884ae9dc028092d955676b64748eb09e15">0x158ee3528dcec318d9f94f8755e338884ae9dc028092d955676b64748eb09e15</a>-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Sha3Uncles:
+                </div>
+                <div class="col-md-10">
+                    {{block.sha3Uncles}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Mined By:
+                </div>
+                <div class="col-md-10">
+                    {{block.miner}}
+                    <!--<a href="/address/0x829bd824b016326a401d083b33d092293333a830">0x829bd824b016326a401d083b33d092293333a830</a> (<b>f2pool_2</b>) in 15 secs-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Difficulty:
+                </div>
+                <div class="col-md-10">
+                    {{block.difficulty}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Total Difficulty:
+                </div>
+                <div class="col-md-10">
+                    {{block.totalDifficulty}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Size:
+                </div>
+                <div class="col-md-10">
+                    {{block.size}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Gas Used:
+                </div>
+                <div class="col-md-10">
+                    {{block.gasUsed}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Gas Limit:
+                </div>
+                <div class="col-md-10">
+                    {{block.gasLimit}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Nonce:
+                </div>
+                <div class="col-md-10">
+                    {{block.nonce}}
+                </div>
+            </div>
+            <!--<div class="row">
+                    <div class="col-md-2">Block Reward:
+                    </div>
+                    <div class="col-md-10">
+                        3<b>.</b>266153007791305398 Ether (<span rel="tooltip" data-placement="bottom" title="" data-original-title="Static block reward">3</span> + <span rel="tooltip" data-placement="bottom" title="" data-original-title="Txn Fees">0.266153007791305398</span>)</div>
+                </div>-->
+            <!--<div class="row">
+                    <div class="col-md-2">Uncles Reward:
+                    </div>
+                    <div class="col-md-10">
+                        0</div>
+                </div>-->
+            <div class="row">
+                <div class="col-md-2">Uncles:
+                </div>
+                <div class="col-md-10">{{block.uncles.length}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Extra Data:
+                </div>
+                <div class="col-md-10">
+                    {{block.extraData}}
+                </div>
+            </div>
+
+            <br>
+        </div>
+    </div>
+</div>

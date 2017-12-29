@@ -17,5 +17,5 @@ myApp.controller("homeController", function($scope, $http){
         });
     }
 
-    $scope.getAllAccountDetails();
+    //$scope.getAllAccountDetails();
 });

@@ -1,0 +1,36 @@
+<!-- Transactions List Page -->
+<div class="row">
+    <!--<div class="row">
+        <div class="col-md-3">
+            <button class="btn btn-success" role="button" ng-click="getAllBlocks()">Get Blocks from Chain</button>
+        </div>        
+        <div class="col-md-3">
+            <button class="btn btn-success" role="button" ng-click="getAllBlocksFromFile()">Get Blocks from File</button>
+        </div>        
+    </div>-->
+    <div class="row">
+        <h3>Block : {{id}}</h3>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+                <tr>                   
+                    <th style="width:300px;">Tx Hash</th>
+                    <th>Block</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Value</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="tx in transactionsList">                    
+                    <td>{{tx.hash}}</td>
+                    <td>{{tx.blockNumber}}</td>
+                    <td>{{tx.from}}</td>
+                    <td>{{tx.to}}</td>
+                    <td>{{tx.value}}</td>                    
+                </tr>
+            </tbody>
+        </table>    
+    </div>
+</div>

@@ -8,6 +8,7 @@ myApp.controller("blockListController", function($scope, $http){
         $scope.blockListModel =  blockList.map(function(block){
             return {
                         number : block.number,
+                        hash: block.hash,
                         miner : block.miner,
                         timestamp : block.timestamp,
                         txCount : block.transactions.length,

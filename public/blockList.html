@@ -1,4 +1,4 @@
-<!-- Home Page -->
+<!-- Block List Page -->
 <div class="row">
     <div class="row">
         <div class="col-md-3">
@@ -37,11 +37,11 @@
                     <td>{{blc.gasLimit}}</td>
                     <td>{{blc.gasUsed}}</td>                -->
                 <tr ng-repeat="blc in blockListModel">                    
-                    <td>{{blc.number}}</td>
+                    <td><a href="#/block/{{blc.hash}}">{{blc.number}}</a></td>
                     <td>{{blc.timestamp}}</td>                    
                     <td>{{blc.miner}}</td>    
                     <td>{{blc.size}}</td>                    
-                    <td><a href="#">{{blc.txCount}}</a></td>
+                    <td><a href="#/transactionsList/{{blc.number}}">{{blc.txCount}}</a></td>
                 </tr>
             </tbody>
         </table>    

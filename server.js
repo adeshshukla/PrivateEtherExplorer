@@ -32,24 +32,12 @@ app.get("/api/getAllAccountDetails", function(req , res){
     console.log('inside api service method : getAllAccountDetails()');
     // Account List
     var accounts = web3.eth.accounts;
-    // console.log('Accounts List------------')
-    // console.log(accounts);
-
-    // Get balance of first account
-    // var balance = web3.eth.getBalance(web3.eth.accounts[0])
-    // console.log('Balance of accounts 1 : ' + balance);
-
-    // balance = web3.eth.getBalance(web3.eth.accounts[1])
-    // console.log('Balance of accounts 2 : ' + balance);
-
     var accountDetails = accounts.map(function(item){
         return{
             address : item,
             balance : web3.fromWei(web3.eth.getBalance(item))
         }
     });
-    // console.log('Account details -----------------------');
-    // console.log(accountDetails);
 
     res.send(accountDetails);
 });
@@ -58,27 +46,17 @@ app.get("/api/getAllBlocks", function(req,res){
     console.log('inside api service method : getAllBlocks()');
 
     var n = web3.eth.blockNumber;
-     // web3.eth.getBlockNumber(function(data){n=data});
-    console.log("Block number : "+ n);
+    // web3.eth.getBlockNumber(function(data){n=data});
+    // console.log("Block number : "+ n);
+
     var blocks = [];
     for(var i = 0; i < n; i++) {
-        var block = web3.eth.getBlock(i, true);
-        // console.log("i ----------------> " + i);
-        // console.log(block);
+        var block = web3.eth.getBlock(i, true);        
         if(block.transactions.length){
             blocks.push(block);
         }
-        // var nt = block.transactions;
-        // console.log('No. of txs : ' + nt);
-        // for(var j = 0; j < block.transactions; j++) {
-        //     console.log("j ----------------> " + j);
-        //     console.log(block.transactions[j]);
-        //     if( block.transactions[j].to == the_address )
-        //         txs.push(block.transactions[j]);
-        // }
     }
-
-    // console.log(txs);
+    
     console.log("Returning blocks--------");
     res.send(blocks);
 });
@@ -88,8 +66,7 @@ app.get("/api/getAllBlocksFromFile", function(req,res){
 
     fs.readFile('./Database/Blocks.txt', 'utf8', function(err, contents) {
 		if(err) {			
-			console.log("ERROR reading txt file!!!");
-			//console.log(err);
+			console.log("ERROR reading txt file!!!");			
 			res.send(err);
 		}
 		else {
@@ -108,6 +85,32 @@ app.get("/api/getAllBlocksFromFile", function(req,res){
 		}
 	});
 });
+
+app.get("/api/getTransactionsFromBlock/:id", function(req,res){
+    console.log('inside api service method : getTransactionsFromBlock() : param : ' + req.params.id);
+    var id = req.params.id;    
+    var txs = [];
+    var tx;
+
+    var n = web3.eth.getBlockTransactionCount(id)
+    for(var i=0; i< n; i++){
+        tx = web3.eth.getTransactionFromBlock(id,i);
+        tx["value"] =  web3.fromWei(tx["value"]);
+        txs.push(tx);
+    }
+
+    res.send(txs);
+});
+
+app.get("/api/getBlock/:addr", function(req,res){
+    console.log('inside api service method : getBlock() : param : ' + req.params.addr);
+    var block = web3.eth.getBlock(req.params.addr);
+    res.send(block);
+});
+
+
+
+
 
  app.post("/api/saveVote", function(req , res){
     console.log('inside api service method : saveVote');
