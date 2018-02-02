@@ -7,7 +7,3 @@
 
 # dependencies
 /node_modules
-
-# config files
-/serverConfig.js
-
