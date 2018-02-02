@@ -2,63 +2,76 @@
 <!doctype html>
 <!-- ASSIGN OUR ANGULAR MODULE -->
 <html>
+
 <head>
     <!-- META -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Optimize mobile viewport -->
 
-    <title>Ethereum Dapp - Voting System</title>
+    <title>My Ether Explorer</title>
 
     <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!-- load bootstrap -->
     <style>
-        html                    { overflow-y:scroll; }
-        a{cursor: pointer;}
-        .marginTop15{
+        html {
+            overflow-y: scroll;
+        }
+        
+        a {
+            cursor: pointer;
+        }
+        
+        .marginTop15 {
             margin-top: 15px;
         }
     </style>
 
     <!-- SPELLS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- load jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- load jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script> load angular -->
     <script src=".\myApp.js"></script>
 
+    <script src=".\dashboardController.js"></script>
     <script src=".\homeController.js"></script>
     <script src=".\blockListController.js"></script>
     <script src=".\transactionsListController.js"></script>
     <script src=".\blockController.js"></script>
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS -->
+
 <body ng-app="myApp">
     <nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-			<a class="navbar-brand" href="#">
-			<!--<img src="images/employees.png" width="30" height="30" class="d-inline-block align-top" alt="">-->
-			Sample Dapp
-			</a>
-        </div>
-        <ul class="nav navbar-nav">
-			<li><a href="#">Wallet</a></li>
-            <li><a href="#/blockList">Blocks</a></li>
-            <!--<li><a href="#/ballot">Ballot</a></li>-->
-			
-			<!--<li><a href="#/employeeDetail/add">New Employee</a></li>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <!--<img src="images/employees.png" width="30" height="30" class="d-inline-block align-top" alt="">-->
+                    Ether Explorer
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#/accounts">Accounts</a></li>
+                <li><a href="#/blockList">Blocks</a></li>
+                <!--<li><a href="#/ballot">Ballot</a></li>-->
+
+                <!--<li><a href="#/employeeDetail/add">New Employee</a></li>
 			<li><a href="#/fileOps">File Ops</a></li>			-->
-			<!-- <li><a href="#/test">Test Page</a></li> -->
-        </ul>		
-    </div>
+                <!-- <li><a href="#/test">Test Page</a></li> -->
+            </ul>
+        </div>
     </nav>
     <div class="container">
         <!--<div class="jumbotron text-center">
             <h1>My first Angular + node App</h1>
         </div>-->
-    
+
         <!--New code-->
         <div ng-view>
-    </div>
+        </div>
 </body>
+
 </html>
