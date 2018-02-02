@@ -1,1 +1,4 @@
-geth --identity "Node123" --networkid 888 --rpc --rpcport "8081" --datadir "./chaindata/" --port "30330" --nodiscover --rpcapi "db,eth,net,web3"
+// --rpcport "8545" --> Port to connect
+// --rpcaddr "192.168.10.248" --> Required to enable another computer to connect to its private chain
+
+geth --identity "Node248" --networkid 888 --rpc --rpcport "8545" --rpccorsdomain "*" --rpcaddr "192.168.10.248" --datadir "./chaindata/" --port "30330" --nodiscover --rpcapi "db,eth,net,web3,personal"

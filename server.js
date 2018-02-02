@@ -20,12 +20,15 @@ app.use(function (req, res, next) {
 });
 
 //////////////////////////////////////////// DAPP ///////////////////////////////////////
-// web3.js
+// Read the config.
+var serverConfig = require('./serverConfig')
+
+// web3.js library.
 Web3 = require("web3");
 
-// 	geth --identity "Node248" --networkid 888 --rpc --rpcport "8081" --datadir "./chaindata/" --port "30330" --nodiscover --rpcapi "db,eth,net,web3"
-// 8081 - rpc port of private chain
-web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8081"));
+// Url of Ethereum private network.
+var privateNodeUrl = "http://" + serverConfig.ChainIpAddr + ":" + serverConfig.ChainPortNo;
+web3 = new Web3(new Web3.providers.HttpProvider(privateNodeUrl));
     
 // ----------------------------------------------------- API ----------------------------------------------------- //
 app.get("/api/getAllAccountDetails", function(req , res){
@@ -120,7 +123,7 @@ app.get("/api/getBlock/:addr", function(req,res){
 
 //////////////////////////////////////////// DAPP ///////////////////////////////////////
 
- var server = app.listen(process.env.PORT || 8080, function () {
+ var server = app.listen(process.env.PORT || serverConfig.WebPortNo, function () {
     var port = server.address().port;    
     console.log("App now running on port", port);
  });
