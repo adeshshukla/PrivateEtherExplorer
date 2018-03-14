@@ -27,12 +27,27 @@ var serverConfig = require('./serverConfig')
 Web3 = require("web3");
 
 // Url of Ethereum private network.
-var privateNodeUrl = "http://" + serverConfig.ChainIpAddr + ":" + serverConfig.ChainPortNo;
-web3 = new Web3(new Web3.providers.HttpProvider(privateNodeUrl));
+if (!serverConfig.ChainIpAddr) {
+    /*
+    '\x1b[31m' - Red Color
+    '\x1b[32m' - Green Color
+    '\x1b[0m' - Reset color
+    */
+    console.log('\x1b[31m', '!!! ERROR !!! - No Ethereum Chain IP address defined.', '\x1b[0m');    
+}
+else {
+    var privateNodeUrl = "http://" + serverConfig.ChainIpAddr + ":" + serverConfig.ChainPortNo;
+    web3 = new Web3(new Web3.providers.HttpProvider(privateNodeUrl));
+
+    var server = app.listen(process.env.PORT || serverConfig.WebPortNo, function () {
+        var port = server.address().port;
+        console.info('\x1b[32m', "App running on - localhost:" + port, '\x1b[0m');
+    });
+}
 
 // ----------------------------------------------------- API ----------------------------------------------------- //
 app.get("/api/getChainOverview", function (req, res) {
-    console.log('inside api service method : getlatestBlock()');
+    // console.log('inside api service method : getlatestBlock()');
     var chainOverview = {};
     var gasPrice, hashRate;
 
@@ -43,17 +58,15 @@ app.get("/api/getChainOverview", function (req, res) {
             chainOverview['hashRate'] = rate;
             chainOverview['lastBlock'] = web3.eth.blockNumber;
 
-            console.log('chain overview---')
-            console.log(chainOverview);
+            // console.log('chain overview---')
+            // console.log(chainOverview);
             res.send(chainOverview);
         });
     });
-
-
 });
 
 app.get("/api/getAllAccountDetails", function (req, res) {
-    console.log('inside api service method : getAllAccountDetails()');
+    // console.log('inside api service method : getAllAccountDetails()');
     // Account List
     var accounts = web3.eth.accounts;
     var accountDetails = accounts.map(function (item) {
@@ -67,7 +80,7 @@ app.get("/api/getAllAccountDetails", function (req, res) {
 });
 
 app.get("/api/getAllBlocks", function (req, res) {
-    console.log('inside api service method : getAllBlocks()');
+    // console.log('inside api service method : getAllBlocks()');
 
     var n = web3.eth.blockNumber;
     // web3.eth.getBlockNumber(function(data){n=data});
@@ -81,12 +94,21 @@ app.get("/api/getAllBlocks", function (req, res) {
         }
     }
 
-    console.log("Returning blocks--------");
+    var strBlocks = JSON.stringify(blocks);
+    // console.log("Writing blocks to txt file.");
+    fs.writeFile('./Database/Blocks.txt', strBlocks, function (err) {
+        if (err) {
+            console.log("ERROR writing blocks to txt file...!!!");
+            res.send(err);
+        }
+    });
+
+    // console.log("Returning blocks--------");
     res.send(blocks);
 });
 
 app.get("/api/getAllBlocksFromFile", function (req, res) {
-    console.log('inside api service method : getAllBlocksFromFile()');
+    // console.log('inside api service method : getAllBlocksFromFile()');
 
     fs.readFile('./Database/Blocks.txt', 'utf8', function (err, contents) {
         if (err) {
@@ -99,19 +121,16 @@ app.get("/api/getAllBlocksFromFile", function (req, res) {
             var jsonObj = JSON.parse(contents);
             // console.log('--------- JSON Content from TXT file ---------');
             // console.log(jsonObj);
-            // jsonObj.forEach(function(element) {
-            // 	console.log(element.firstName + ' ' + element.lastName);
-            // }, this);
 
             // send data to front end
-            console.log("Returning blocks from TXT File --------");
+            // console.log("Returning blocks from TXT File --------");
             res.send(jsonObj);
         }
     });
 });
 
 app.get("/api/getTransactionsFromBlock/:id", function (req, res) {
-    console.log('inside api service method : getTransactionsFromBlock() : param : ' + req.params.id);
+    // console.log('inside api service method : getTransactionsFromBlock() : param : ' + req.params.id);
     var id = req.params.id;
     var txs = [];
     var tx;
@@ -127,24 +146,8 @@ app.get("/api/getTransactionsFromBlock/:id", function (req, res) {
 });
 
 app.get("/api/getBlock/:addr", function (req, res) {
-    console.log('inside api service method : getBlock() : param : ' + req.params.addr);
+    // console.log('inside api service method : getBlock() : param : ' + req.params.addr);
     var block = web3.eth.getBlock(req.params.addr);
     res.send(block);
 });
 
-
-
-
-
-app.post("/api/saveVote", function (req, res) {
-    console.log('inside api service method : saveVote');
-    console.log(req.body);
-    res.send("ok");
-});
-
-//////////////////////////////////////////// DAPP ///////////////////////////////////////
-
-var server = app.listen(process.env.PORT || serverConfig.WebPortNo, function () {
-    var port = server.address().port;
-    console.log("App now running on port", port);
-});
