@@ -34,8 +34,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script> load angular -->
-    <script src=".\myApp.js"></script>
+    <link rel="stylesheet" href="\loader\loader.css">
+    
 
+    <script src=".\myApp.js"></script>    
+    <script src="\loader\loaderService.js"></script>
     <script src=".\dashboardController.js"></script>
     <script src=".\homeController.js"></script>
     <script src=".\blockListController.js"></script>
@@ -68,6 +71,11 @@
         <!--<div class="jumbotron text-center">
             <h1>My first Angular + node App</h1>
         </div>-->
+
+        <div id="overlay" data-ng-if="loading">
+            <!--<span id="loaderImg">Loading...</span>-->
+             <img id="loaderImg" src="assets/loader.gif"/>
+        </div>
 
         <!--New code-->
         <div ng-view>

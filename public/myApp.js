@@ -1,11 +1,12 @@
 // public/core.js
 var myApp = angular.module('myApp', ['ngRoute']);
 
-myApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
   //     $locationProvider.html5Mode({
   //        enabled: true,
   //        requireBase: false
   // });
+  $httpProvider.interceptors.push('LoadingInterceptor');
 
   $locationProvider.hashPrefix('');
 
